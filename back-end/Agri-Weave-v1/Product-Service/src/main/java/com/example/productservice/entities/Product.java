@@ -1,8 +1,11 @@
 package com.example.productservice.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -20,13 +23,13 @@ import java.util.Objects;
         @Index(name = "idx_sold_unit", columnList = "sold_unit"),
         @Index(name = "idx_created_at", columnList = "created_at"),
 })
-@NoArgsConstructor
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
 @RequiredArgsConstructor
-@Builder
+
 public class Product implements Serializable {
 
     @Serial
@@ -47,20 +50,30 @@ public class Product implements Serializable {
     @Column(name = "min_quantity")
     private Integer minQuantity;
 
+    @Column(name = "status" , nullable = false )
+    private Boolean status;
+
+
+
+    @Column(name = "seller_id", nullable = false)
+    private Long sellerId;
+
+
     @Column(name = "unit")
     private String unit;
 
     @Column(name = "sold_unit")
-    private Integer soldUnit;
+    private Double soldUnit;
 
     @Column(name = "stock")
     private Integer stock;
 
     @CreatedDate
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Column(name = "created_at")
     private Instant createdAt;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @LastModifiedDate
     @Column(name = "updated_at")
     private Instant updatedAt;
@@ -72,13 +85,24 @@ public class Product implements Serializable {
     @Column(name = "sku")
     private String sku;
 
+    @Column(name = "dhaka_shipping_charge")
+    private double dhakaShipping;
+
+    @Column(name = "outside_dhaka_shipping_charge")
+    private double outsideDhakaShipping;
+
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = false) // This defines the foreign key
     private Category category;
 
 
     @Column(name = "type")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private ProductType type;
+
+
 
     @Column(name="avg_rating" )
     private Double avgRating = 0.0;
@@ -99,5 +123,7 @@ public class Product implements Serializable {
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
+
+
 }
 
