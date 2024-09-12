@@ -1,8 +1,11 @@
 package com.example.productservice.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -20,13 +23,13 @@ import java.util.Objects;
         @Index(name = "idx_sold_unit", columnList = "sold_unit"),
         @Index(name = "idx_created_at", columnList = "created_at"),
 })
-@NoArgsConstructor
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
 @RequiredArgsConstructor
-@Builder
+
 public class Product implements Serializable {
 
     @Serial
@@ -47,6 +50,9 @@ public class Product implements Serializable {
     @Column(name = "min_quantity")
     private Integer minQuantity;
 
+    @Column(name = "seller_id", nullable = false)
+    private Long sellerId;
+
     @Column(name = "unit")
     private String unit;
 
@@ -57,10 +63,11 @@ public class Product implements Serializable {
     private Integer stock;
 
     @CreatedDate
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Column(name = "created_at")
     private Instant createdAt;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @LastModifiedDate
     @Column(name = "updated_at")
     private Instant updatedAt;
@@ -78,7 +85,8 @@ public class Product implements Serializable {
 
 
     @Column(name = "type")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private ProductType type;
 
     @Column(name="avg_rating" )
     private Double avgRating = 0.0;
