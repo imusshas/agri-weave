@@ -40,5 +40,9 @@ public class ProductDto implements Serializable {
     private double outsideDhakaShipping;
     private Double avgRating;
 
+    public void test() {
+        System.out.println("Test");
+    }
+
 
 }
