@@ -36,12 +36,16 @@ public class User {
     @Column(name = "profile_img")
     private String profileImg;
 
-    // Many-to-Many relationship with Role
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles;
+    @Column(name= "address")
+    private String address;
+
+    private String companyName;
+    private String nid;
+    private String paymentInfo;
+
+    private RoleName role;
+    private String vehicle;
+
+
+
 }
