@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import reactor.core.publisher.Mono;
 
-@RequestMapping("/auth")
+@RequestMapping("user/auth")
 @Controller
 public class Auth {
 
@@ -27,4 +27,9 @@ public class Auth {
         ResponseMessage responseMessage = buyerService.registerBuyer(buyerSignUp);
         return ResponseEntity.ok(responseMessage);
     }
+    @PostMapping("/buyer/login")
+    public Mono<ResponseEntity<ResponseMessage>> loginBuyer(@RequestBody BuyerSignUp buyerSignUp) {
+        return Mono.just(ResponseEntity.ok(buyerService.registerBuyer(buyerSignUp)));
+    }
+
 }

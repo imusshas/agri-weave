@@ -10,8 +10,6 @@ import com.example.userservice.services.BuyerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import reactor.core.publisher.Mono;
 
 @Service
 public class BuyerServiceImpl implements BuyerService {
@@ -38,7 +36,6 @@ public class BuyerServiceImpl implements BuyerService {
         user.setEmail(buyerSignUp.getEmail());
 
         user.setPassword(buyerSignUp.getPassword());
-
         // Set role to BUYER
         user.setRole(RoleName.BUYER);
 
@@ -59,11 +56,43 @@ public class BuyerServiceImpl implements BuyerService {
         if (user == null) {
             return new ResponseMessage("User not found");
         }
+        if (user.getRole()!=RoleName.BUYER) {
+            return new ResponseMessage("User is not a buyer");
+        }
         if (!user.getPassword().equals(password)) {
             return new ResponseMessage("Incorrect password");
         }
         return new ResponseMessage("Login successful");
     }
+
+    @Override
+    public ResponseMessage updateBuyer(String email, User newUser) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user == null) {
+            return new ResponseMessage("User not found");
+        }
+        if (user.getRole()!=RoleName.BUYER) {
+            return new ResponseMessage("User is not a buyer");
+        }
+
+        userRepository.save(newUser);
+        return new ResponseMessage("Buyer updated successfully");
+    }
+
+    @Override
+    public ResponseMessage deleteBuyer(String email) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user == null) {
+            return new ResponseMessage("User not found");
+        }
+        if (user.getRole()!=RoleName.BUYER) {
+            return new ResponseMessage("User is not a buyer");
+        }
+
+        userRepository.delete(user);
+        return new ResponseMessage("Buyer deleted successfully");
+    }
+
 
 
 }
