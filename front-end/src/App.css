@@ -1,42 +1,285 @@
-#root {
-  max-width: 1280px;
+.text-semi-bold {
+  font-weight: 600;
+}
+
+.text-medium {
+  font-size: 2.4rem;
+}
+
+.text-large {
+  font-size: 4.8rem;
+}
+
+.text-green {
+  color: var(--main-color);
+}
+
+.text-green-dark {
+  color: var(--primary-color);
+}
+
+.text-light {
+  color: var(--text-light);
+}
+
+.text-error {
+  color: var(--error-color);
+}
+
+.width-half {
+  width: 50%;
+}
+
+.height-72-fixed {
+  height: 7.2rem;
+  overflow: hidden;
+}
+
+.padding {
+  padding: 1.6rem;
+}
+
+.margin-center {
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+}
+
+.vertical {
+  margin: 2.4rem 0;
+}
+
+.border-radius-full {
+  border-radius: 100%;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.box-shadow {
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-start {
+  justify-content: flex-start;
+  gap: 2.4rem;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.self-start {
+  align-self: flex-start;
+}
+
+.self-center {
+  align-self: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  gap: 2.4rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.flex-gap-medium {
+  gap: 2.4rem;
+}
+
+.gap-zero {
+  gap: 0;
+}
+
+.gap-section {
+  gap: 8rem;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  height: 7.2rem;
+  padding: 0;
+  border: none;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  border: none;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search {
+  flex: 1;
+  max-width: 70rem;
+  height: 4.8rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+
+  display: flex;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.search input,
+.search input:focus {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
 }
 
-.card {
-  padding: 2em;
+.search .search-icon {
+  width: 6.4rem;
+  height: 100%;
+  background-color: var(--primary-color-blur);
+  color: var(--primary-color);
+  padding: 0.8rem;
+  border-left: var(--border);
+  cursor: pointer;
 }
 
-.read-the-docs {
-  color: #888;
+.nav-icon {
+  font-size: 3.2rem;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 6.4rem;
+  font-weight: 700;
+}
+
+.hero-sub-title {
+  font-weight: normal;
+}
+
+.hero-image {
+  width: 50%;
+}
+
+.link:hover {
+  border-bottom: var(--border);
+}
+
+.link-title {
+  font-weight: 600;
+  font-size: 3.2rem;
+}
+
+.selected-link {
+  color: var(--main-color);
+  border-bottom: var(--border);
+}
+
+.btn {
+  padding: 1.6rem 4.8rem;
+}
+
+.btn-primary {
+  background-color: var(--main-color);
+  color: var(--on-main-color);
+}
+
+.btn-secondary {
+  background-color: var(--primary-color);
+  color: var(--on-main-color);
+}
+
+.btn-product {
+  background-color: var(--primary-color-blur);
+  color: var(--primary-color);
+  padding: 0.8rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.btn-inc-dec {
+  font-size: 2.4rem;
+  padding: 0.8rem 1.6rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.btn-error {
+  background-color: var(--error-color-blur);
+  color: var(--error-color);
+  padding: 0.8rem;
+  border: var(--error-border);
+  border-radius: var(--border-radius);
+}
+
+.seller-img {
+  width: 4.8rem;
+  height: 4.8rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 100%;
+}
+
+.product-item-img {
+  width: 24rem;
+  height: 24rem;
+}
+
+.profile-img {
+  width: 24rem;
+  height: 24rem;
+  border: var(--border);
+  border-radius: 100%;
+  position: relative;
+}
+
+.edit-profile-img {
+  width: 4.8rem;
+  height: 4.8rem;
+  background-color: var(--primary-color);
+  color: var(--on-main-color);
+  padding: 0.8rem;
+  border-radius: 100%;
+
+  position: absolute;
+  right: 0;
+  bottom: 3.2rem;
+
+  cursor: pointer;
+}
+
+.edit-profile-icon {
+  font-size: 3.2rem;
+}
+
+.error {
+  color: var(--error-color);
+  border-color: var(--error-color);
+  outline-color: var(--error-color-blur-bg);
+}
+
+.error:focus {
+  outline-color: var(--error-color);
 }
